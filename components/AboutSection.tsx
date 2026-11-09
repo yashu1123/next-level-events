@@ -1,7 +1,6 @@
-﻿'use client';
+'use client';
 import { useState } from 'react';
-import { ArrowLeft, ArrowUpRight, Music2, Sparkles } from 'lucide-react';
-
+import { Music2, Sparkles, ArrowUpRight } from 'lucide-react';
 type Language = 'en' | 'kn';
 const copy = {
   en: {
@@ -60,29 +59,19 @@ const copy = {
   }
 };
 
-export default function AboutPage() {
-  const [language, setLanguage] = useState<Language>('en');
-  const t = copy[language];
-  return <div className="about-page">
-    <header className="about-page-header">
-      <a className="brand" href="/" aria-label="Next Level Events home"><span className="brand-icon">n<span>↗</span></span><span>NEXT LEVEL<small>EVENTS & ENTERTAINMENT</small></span></a>
-      <a className="about-back" href="/"><ArrowLeft size={18}/><span>{t.back}</span></a>
-    </header>
-    <main lang={language}>
-      <section className="about-page-hero">
-        <div className="about-page-hero-inner">
-          <div className="about-page-topline"><span className="eyebrow"><Sparkles size={15}/>{t.label}</span><div className="language-switch" role="group" aria-label="Choose About Us language"><button type="button" lang="en" aria-pressed={language==='en'} onClick={()=>setLanguage('en')}>English</button><button type="button" lang="kn" aria-pressed={language==='kn'} onClick={()=>setLanguage('kn')}>ಕನ್ನಡ</button></div></div>
-          <h1>{t.brand}</h1><p className="about-page-tagline">{t.tagline}</p>
-          <div className="about-page-hero-bottom"><span>01 — 05</span><span>SCROLL TO EXPLORE ↓</span></div>
-        </div>
-      </section>
-      <div className="about-page-intro-band"><span>CREATIVITY ✳ ENTERTAINMENT ✳ CELEBRATION</span><Music2 size={24}/></div>
-      <section className="about-page-section about-page-intro"><div className="about-page-index">01 / {t.introTitle}</div><div><h2>{t.introTitle}</h2>{t.intro.map((p,i)=><p key={i}>{p}</p>)}</div></section>
-      <section className="about-page-section about-page-speciality"><div className="about-page-index">02 / {t.specialityTitle}</div><div><h2>{t.specialityTitle}</h2><p>{t.specialityIntro}</p><div className="language-grid">{t.languages.map((name,i)=><div key={i}><span>0{i+1}</span><strong>{name}</strong><ArrowUpRight size={20}/></div>)}</div><p>{t.specialityOutro}</p></div></section>
-      <section className="about-page-section about-page-artists"><div className="about-page-index">03 / {t.artistsTitle}</div><div><h2>{t.artistsTitle}</h2><p>{t.artistsIntro}</p><div className="artist-list">{t.artists.map((name,i)=><div key={name}><span>0{i+1}</span><strong>{name}</strong><Music2 size={20}/></div>)}</div><p>{t.artistsOutro}</p></div></section>
-      <section className="about-page-purpose"><article><span>04 / {t.missionTitle}</span><h2>{t.missionTitle}</h2><p>{t.mission}</p></article><article><span>05 / {t.visionTitle}</span><h2>{t.visionTitle}</h2><p>{t.vision}</p></article></section>
-      <section className="about-page-cta"><span className="eyebrow"><Sparkles size={15}/> NEXT LEVEL EVENTS</span><h2>{t.ctaTitle}</h2><a className="button" href="/#contact">{t.cta}<ArrowUpRight size={20}/></a></section>
-    </main>
-    <footer className="about-page-footer"><a className="brand" href="/"><span className="brand-icon">n<span>↗</span></span><span>NEXT LEVEL<small>EVENTS & ENTERTAINMENT</small></span></a><p>{t.footer}</p><small>© {new Date().getFullYear()} Next Level Events</small></footer>
-  </div>;
+export default function AboutSection(){
+ const [language,setLanguage]=useState<Language>('en');
+ const t=copy[language];
+ return <section id="about" className="about section" lang={language}>
+   <div className="about-photo"><img loading="lazy" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=85" alt="Live singer with a microphone"/><span className="photo-label"><Music2 size={22}/> MADE FOR THE LIVE MOMENT</span></div>
+   <div className="about-copy">
+    <div className="about-section-top"><p className="eyebrow orange">02 / {t.introTitle}</p><div className="language-switch" role="group" aria-label="Choose About Us language"><button type="button" lang="en" aria-pressed={language==='en'} onClick={()=>setLanguage('en')}>English</button><button type="button" lang="kn" aria-pressed={language==='kn'} onClick={()=>setLanguage('kn')}>ಕನ್ನಡ</button></div></div>
+    <div aria-live="polite"><h2>{t.brand}</h2><p className="about-tagline">{t.tagline}</p><h3>{t.introTitle}</h3>{t.intro.map((p,i)=><p key={i}>{p}</p>)}
+    <div className="about-detail"><h3>{t.specialityTitle}</h3><p>{t.specialityIntro}</p><div className="about-language-list">{t.languages.map(x=><span key={x}>{x}</span>)}</div><p>{t.specialityOutro}</p></div>
+    <div className="about-detail"><h3>{t.artistsTitle}</h3><p>{t.artistsIntro}</p><div className="about-artist-list">{t.artists.map((name,i)=><span key={name}><b>0{i+1}</b>{name}</span>)}</div><p>{t.artistsOutro}</p></div>
+    <div className="about-detail"><h3>{t.missionTitle}</h3><p>{t.mission}</p></div>
+    <div className="about-detail"><h3>{t.visionTitle}</h3><p>{t.vision}</p></div></div>
+    <a className="text-link" href="#contact">{t.cta} <ArrowUpRight size={20}/></a>
+   </div>
+ </section>;
 }
