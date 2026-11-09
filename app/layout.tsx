@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Next Level Events | Make it unforgettable",
   description: "Live music, dance performances and unforgettable celebrations. Plan your next event with Next Level Events.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
   },
 };
 
@@ -21,3 +21,4 @@ export default function RootLayout({
     </html>
   );
 }
+
