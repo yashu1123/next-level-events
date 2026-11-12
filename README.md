@@ -11,6 +11,8 @@ A clean full-stack starter running on [vinext](https://github.com/cloudflare/vin
 
 ## Docker
 
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for local startup, server deployment, and update commands using port 5173.
+
 Install Docker with Compose support (on Windows, start Docker Desktop with Linux containers). From this directory, run:
 
 ```sh
