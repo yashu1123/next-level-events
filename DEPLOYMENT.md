@@ -47,7 +47,7 @@ For website updates, add the changed source files before committing too.
 Requires Docker and Docker Compose installed on the server.
 
 ```bash
-ssh yashu@178.236.185.36
+ssh 
 sudo -i
 cd /opt
 git clone --branch backup https://github.com/yashu1123/next-level-events.git
@@ -68,7 +68,7 @@ Open http://178.236.185.36:5173. Allow inbound TCP 5173 in your hosting provider
 Push your changes first, then run:
 
 ```bash
-ssh yashu@178.236.185.36
+ssh 
 sudo -i
 cd /opt/next-level-events
 
