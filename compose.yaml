@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:${PORT:-3000}:3000"
+    volumes:
+      - worker-state:/app/.wrangler/state
+    init: true
+    restart: unless-stopped
+
+volumes:
+  worker-state:

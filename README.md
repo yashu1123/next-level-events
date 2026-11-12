@@ -9,6 +9,25 @@ A clean full-stack starter running on [vinext](https://github.com/cloudflare/vin
 - Managed Linux: managed Linux runtime with Bash, `flock`, `curl`, `sha256sum`, and GNU `timeout`
 - Git and `tar` (including Windows `tar.exe`) are required for publishing; portable publication does not require Bash
 
+## Docker
+
+Install Docker with Compose support (on Windows, start Docker Desktop with Linux containers). From this directory, run:
+
+```sh
+docker compose up --build -d
+```
+
+Open <http://localhost:3000>. The image builds the app and serves the built Cloudflare Worker through Wrangler's local runtime. It includes local D1/R2 emulation; it does not connect to hosted data or provide Sites-hosted ChatGPT sign-in and connector services. This setup is for local use, not a replacement for the Sites production hosting platform.
+
+```sh
+docker compose logs -f app
+docker compose down
+```
+
+Local Worker data persists in the `worker-state` Docker volume across container rebuilds and shutdowns. `docker compose down --volumes` deletes that local data. Existing host `.wrangler` data is not imported. On startup, the container applies pending SQL migrations from `drizzle/` to its local D1 database before serving requests; Wrangler tracks which migrations have already run.
+
+The host port defaults to 3000. Set `PORT` before starting Compose to change it (PowerShell: `$env:PORT = "8080"`). After source changes, rerun `docker compose up --build -d`. Local secrets, installed dependencies, generated output, and original media in `moments/` are excluded from the build context; served media belongs in `public/`.
+
 ## Sites Lifecycle
 
 The Sites initializer copies the shared starter and selects managed-linux only when `SITES_MANAGED_LINUX_CONTAINER=1`; otherwise it selects portable. It saves the selection only in ignored `.sites-runtime/execution-profile.json`. Both profiles copy/configure first, then use the plugin's separate `install-dependencies.mjs` step to measure installation independently. Edit source under `app/` and follow the Sites skill for installation, preview, builds, and publishing.
